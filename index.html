@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="title" content="Name Analysis & Generator | Predict Age, Gender, Nationality from Names">
+<meta name="description" content="Analyze names to predict age, gender, and nationality using real-time APIs. Generate unique baby names for boys, girls, or neutral genders. Try Name Analysis now!">
+<meta name="keywords" content="Name analysis, name prediction, baby name generator, gender prediction, age prediction, nationality by name, name insights, baby names, AI name tool">
+<meta name="author" content="NameAnalysis.netlify.app">
+<meta name="robots" content="index, follow">
+<meta name="language" content="English">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://nameanalysis.netlify.app/">
+<meta name="theme-color" content="#6c63ff">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nameanalysis.netlify.app/">
+<meta property="og:title" content="Name Analysis | Predict Age, Gender & Nationality">
+<meta property="og:description" content="Discover interesting facts about names — predict age, gender, and nationality or generate beautiful baby name ideas instantly.">
+<meta property="og:image" content="https://i.postimg.cc/Wp9ZQ5zR/IMG-20250802-232108.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://nameanalysis.netlify.app/">
+<meta name="twitter:title" content="Name Analysis & Generator Tool">
+<meta name="twitter:description" content="Smart tool to analyze names or generate beautiful baby name ideas by gender. Try it now!">
+<meta name="twitter:image" content="https://i.postimg.cc/Wp9ZQ5zR/IMG-20250802-232108.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Analysis | Predict Age, Gender & Nationality</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Schema.org JSON-LD Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Name Analysis Tool",
+  "url": "https://nameanalysis.netlify.app/",
+  "image": "https://i.postimg.cc/Wp9ZQ5zR/IMG-20250802-232108.jpg",
+  "description": "NameAnalysis lets you predict the age, gender, and nationality based on a name using AI-powered APIs. You can also generate beautiful name ideas for boys, girls, or both.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "All",
+  "creator": {
+    "@type": "Organization",
+    "name": "NameAnalysis.netlify.app"
+  }
+}
+</script>
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #ff6584;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --gray: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background-color: var(--secondary);
+        }
+
+        button.secondary:hover {
+            background-color: #e04f70;
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .result-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .result-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-probability {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .country-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .country-item {
+            background: var(--gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .country-flag {
+            width: 16px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(108, 99, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: var(--danger);
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+
+        .name-generator-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .name-generator-container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .name-generator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gender-selector {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .gender-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .gender-option:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+
+        .gender-option input[type="radio"] {
+            display: none;
+        }
+
+        .gender-option input[type="radio"]:checked + .gender-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .gender-option input[type="radio"]:checked + .gender-label i {
+            color: var(--primary);
+        }
+
+        .gender-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .generated-names {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .name-card {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .name-card:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+
+            .gender-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .generated-names {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .bounce {
+            animation: bounce 0.5s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="animate__animated animate__fadeIn">
+            <h1>Name Analysis & Generator</h1>
+            <p class="subtitle">Discover insights about any name or generate beautiful baby name ideas with our advanced tools.</p>
+        </header>
+
+        <h2 class="section-title animate__animated animate__fadeIn">Name Analysis</h2>
+        <div class="search-container animate__animated animate__fadeInUp">
+            <form class="search-form" id="nameForm">
+                <div class="input-group">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="nameInput" placeholder="Enter a name..." required>
+                </div>
+                <button type="submit" id="analyzeBtn" class="pulse">
+                    <i class="fas fa-search"></i> Analyze Name
+                </button>
+            </form>
+        </div>
+
+        <h2 class="section-title animate__animated animate__fadeIn">Name Generator</h2>
+        <div class="name-generator-container animate__animated animate__fadeInUp">
+            <form class="name-generator-form" id="nameGeneratorForm">
+                <div class="input-group">
+                    <i class="fas fa-baby input-icon"></i>
+                    <select id="nameGender" required>
+                        <option value="" disabled selected>Select gender preference</option>
+                        <option value="neutral">Neutral (Both)</option>
+                        <option value="boy">Boy</option>
+                        <option value="girl">Girl</option>
+                    </select>
+                </div>
+                <button type="submit" id="generateBtn" class="secondary">
+                    <i class="fas fa-magic"></i> Generate Names
+                </button>
+            </form>
+
+            <div class="generated-names" id="generatedNames">
+                <!-- Generated names will appear here -->
+            </div>
+        </div>
+
+        <div class="loading" id="loadingIndicator">
+            <div class="spinner"></div>
+            <p>Analyzing name...</p>
+        </div>
+
+        <div class="loading" id="nameGenLoading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Generating names...</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+        <div class="error-message" id="nameGenError" style="display: none;"></div>
+
+        <div class="results-container" id="resultsContainer">
+            <!-- Results will be inserted here -->
+            <div class="result-card animate__animated animate__fadeIn" style="display: none;" id="ageResult">
+                <div class="result-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <h3 class="result-title">Age Prediction</h3>
+                <div class="result-value" id="ageValue">--</div>
+                <div class="result-probability" id="ageProbability"></div>
+            </div>
+
+            <div class="result-card animate__animated animate__fadeIn" style="display: none;" id="genderResult">
+                <div class="result-icon">
+                    <i class="fas fa-venus-mars"></i>
+                </div>
+                <h3 class="result-title">Gender Prediction</h3>
+                <div class="result-value" id="genderValue">--</div>
+                <div class="result-probability" id="genderProbability"></div>
+            </div>
+
+            <div class="result-card animate__animated animate__fadeIn" style="display: none;" id="nationalityResult">
+                <div class="result-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h3 class="result-title">Nationality Prediction</h3>
+                <div class="country-list" id="countryList">
+                    <!-- Countries will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <footer class="animate__animated animate__fadeIn">
+            <p>© 2023 Name Analysis Tool | Powered by Agify, Genderize, Nationalize, and API-Ninjas APIs</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const nameForm = document.getElementById('nameForm');
+            const nameInput = document.getElementById('nameInput');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const errorMessage = document.getElementById('errorMessage');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const ageResult = document.getElementById('ageResult');
+            const genderResult = document.getElementById('genderResult');
+            const nationalityResult = document.getElementById('nationalityResult');
+            const ageValue = document.getElementById('ageValue');
+            const ageProbability = document.getElementById('ageProbability');
+            const genderValue = document.getElementById('genderValue');
+            const genderProbability = document.getElementById('genderProbability');
+            const countryList = document.getElementById('countryList');
+            
+            // Name Generator Elements
+            const nameGeneratorForm = document.getElementById('nameGeneratorForm');
+            const nameGender = document.getElementById('nameGender');
+            const generateBtn = document.getElementById('generateBtn');
+            const generatedNames = document.getElementById('generatedNames');
+            const nameGenLoading = document.getElementById('nameGenLoading');
+            const nameGenError = document.getElementById('nameGenError');
+
+            // API Keys
+            const AGIFY_API_KEY = '328820f22b6025e8bb4c60e5854eb577';
+            const NINJAS_API_KEY = 'XTd7kx/vc1AYNGGOiZXazw==aqrzWsbH4YgyAUPj';
+
+            // Event Listeners
+            nameForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = nameInput.value.trim();
+                
+                if (name) {
+                    analyzeName(name);
+                }
+            });
+
+            nameGeneratorForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const gender = nameGender.value;
+                
+                if (gender) {
+                    generateNames(gender);
+                }
+            });
+
+            // Name Analysis Functions
+            async function analyzeName(name) {
+                // Show loading indicator
+                loadingIndicator.style.display = 'block';
+                errorMessage.textContent = '';
+                analyzeBtn.disabled = true;
+                
+                try {
+                    // Hide previous results
+                    [ageResult, genderResult, nationalityResult].forEach(el => {
+                        el.style.display = 'none';
+                        el.classList.remove('animate__fadeIn');
+                    });
+
+                    // Make API calls in parallel
+                    const [ageData, genderData, nationalityData] = await Promise.all([
+                        fetchAge(name),
+                        fetchGender(name),
+                        fetchNationality(name)
+                    ]);
+
+                    // Display results
+                    displayAge(ageData);
+                    displayGender(genderData);
+                    displayNationality(nationalityData);
+
+                    // Show results with animation
+                    [ageResult, genderResult, nationalityResult].forEach((el, i) => {
+                        setTimeout(() => {
+                            el.style.display = 'block';
+                            el.classList.add('animate__fadeIn');
+                        }, i * 200);
+                    });
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    errorMessage.textContent = 'An error occurred while analyzing the name. Please try again.';
+                } finally {
+                    loadingIndicator.style.display = 'none';
+                    analyzeBtn.disabled = false;
+                }
+            }
+
+            async function fetchAge(name) {
+                const response = await fetch(`https://api.agify.io?name=${name}&api_key=${AGIFY_API_KEY}`);
+                if (!response.ok) throw new Error('Age API failed');
+                return await response.json();
+            }
+
+            async function fetchGender(name) {
+                const response = await fetch(`https://api.genderize.io?name=${name}&api_key=${AGIFY_API_KEY}`);
+                if (!response.ok) throw new Error('Gender API failed');
+                return await response.json();
+            }
+
+            async function fetchNationality(name) {
+                const response = await fetch(`https://api.nationalize.io?name=${name}&api_key=${AGIFY_API_KEY}`);
+                if (!response.ok) throw new Error('Nationality API failed');
+                return await response.json();
+            }
+
+            function displayAge(data) {
+                if (data.age) {
+                    ageValue.textContent = data.age;
+                    ageProbability.textContent = `Based on ${data.count} records`;
+                } else {
+                    ageValue.textContent = 'Unknown';
+                    ageProbability.textContent = 'Not enough data';
+                }
+            }
+
+            function displayGender(data) {
+                if (data.gender) {
+                    const gender = data.gender === 'male' ? 'Male' : 'Female';
+                    genderValue.textContent = gender;
+                    
+                    // Change color based on gender
+                    genderValue.style.color = data.gender === 'male' ? '#3b82f6' : '#ec4899';
+                    
+                    const probability = Math.round(data.probability * 100);
+                    genderProbability.textContent = `${probability}% confidence`;
+                } else {
+                    genderValue.textContent = 'Unknown';
+                    genderProbability.textContent = 'Not enough data';
+                    genderValue.style.color = '';
+                }
+            }
+
+            function displayNationality(data) {
+                countryList.innerHTML = '';
+                
+                if (data.country && data.country.length > 0) {
+                    // Sort by probability and take top 5
+                    const topCountries = data.country
+                        .sort((a, b) => b.probability - a.probability)
+                        .slice(0, 5);
+                    
+                    topCountries.forEach(country => {
+                        const countryCode = country.country_id.toLowerCase();
+                        const probability = Math.round(country.probability * 100);
+                        
+                        const countryItem = document.createElement('div');
+                        countryItem.className = 'country-item';
+                        countryItem.innerHTML = `
+                            <img src="https://flagcdn.com/16x12/${countryCode}.png" class="country-flag" alt="${countryCode}">
+                            ${countryCode.toUpperCase()} (${probability}%)
+                        `;
+                        countryList.appendChild(countryItem);
+                    });
+                } else {
+                    const noData = document.createElement('div');
+                    noData.textContent = 'Not enough data';
+                    noData.style.color = '#718096';
+                    countryList.appendChild(noData);
+                }
+            }
+
+            // Name Generator Functions
+            async function generateNames(gender) {
+                // Show loading indicator
+                nameGenLoading.style.display = 'block';
+                nameGenError.style.display = 'none';
+                generateBtn.disabled = true;
+                generatedNames.innerHTML = '';
+                
+                try {
+                    const names = await fetchBabyNames(gender);
+                    displayGeneratedNames(names);
+                } catch (error) {
+                    console.error('Error:', error);
+                    nameGenError.textContent = 'An error occurred while generating names. Please try again.';
+                    nameGenError.style.display = 'block';
+                } finally {
+                    nameGenLoading.style.display = 'none';
+                    generateBtn.disabled = false;
+                }
+            }
+
+            async function fetchBabyNames(gender) {
+                const response = await fetch(`https://api.api-ninjas.com/v1/babynames?gender=${gender}`, {
+                    headers: {
+                        'X-Api-Key': NINJAS_API_KEY
+                    }
+                });
+                
+                if (!response.ok) throw new Error('Name Generator API failed');
+                return await response.json();
+            }
+
+            function displayGeneratedNames(names) {
+                generatedNames.innerHTML = '';
+                
+                if (names && names.length > 0) {
+                    names.forEach((name, index) => {
+                        const nameCard = document.createElement('div');
+                        nameCard.className = 'name-card';
+                        nameCard.textContent = name;
+                        
+                        // Add click handler to analyze the generated name
+                        nameCard.addEventListener('click', () => {
+                            nameInput.value = name;
+                            analyzeName(name);
+                            nameCard.classList.add('bounce');
+                            setTimeout(() => {
+                                nameCard.classList.remove('bounce');
+                            }, 500);
+                            
+                            // Scroll to analysis section
+                            document.querySelector('.search-container').scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        });
+                        
+                        // Staggered appearance animation
+                        setTimeout(() => {
+                            generatedNames.appendChild(nameCard);
+                            nameCard.classList.add('animate__fadeIn');
+                        }, index * 100);
+                    });
+                } else {
+                    const noNames = document.createElement('div');
+                    noNames.textContent = 'No names generated. Please try again.';
+                    noNames.style.color = '#718096';
+                    noNames.style.gridColumn = '1 / -1';
+                    noNames.style.textAlign = 'center';
+                    generatedNames.appendChild(noNames);
+                }
+            }
+
+            // Initial animation for input field
+            setTimeout(() => {
+                nameInput.focus();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
